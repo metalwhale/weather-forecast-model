@@ -1,0 +1,17 @@
+version: "3"
+services:
+  trainer:
+    build:
+      context: ./trainer
+      dockerfile: Dockerfile.local
+    environment:
+      - WP_INPUT_DATABASE_HOST=database
+      - WP_INPUT_DATABASE_PORT=5432
+      - WP_INPUT_DATABASE_DB=
+      - WP_INPUT_DATABASE_USER=postgres
+      - WP_INPUT_DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - WP_INPUT_START_DATE=2024/02/01
+    volumes:
+      - ./:/usr/src/weather-forecast-model/
+    tty: true
+    working_dir: /usr/src/weather-forecast-model/
